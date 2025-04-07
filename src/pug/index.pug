@@ -1,23 +1,14 @@
-//- layout.pug（共通レイアウトとして使えるファイル）
+//- index.pug（トップページ用の中身）
 
-doctype html
-html(lang="ja")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title サンプルサイト
-    link(rel="stylesheet", href="/css/style.css")
-  body
-    header
-      h1 サンプルサイトへようこそ！
-      nav
-        ul
-          li: a(href="/") ホーム
-          li: a(href="/about") このサイトについて
-          li: a(href="/contact") お問い合わせ
+extends layout.pug
 
-    main
-      block content
+block content
+  section.hero
+    h2 今日のおすすめ
+    p これはPugで書かれたHTMLテンプレートです。
 
-    footer
-      p &copy; 2025 サンプルサイト All rights reserved.
+  section.news
+    h3 お知らせ
+    ul
+      li 4月10日: 新機能を追加しました！
+      li 4月1日: サイトをリニューアルしました！

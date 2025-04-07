@@ -12,7 +12,7 @@ const browserSync = require("browser-sync")
 const paths = {
   root: "./dist/",
   pug: "./src/pug/**/*.pug",
-  html: "./dist/**/*.html",
+  html: "./dist/",
   cssSrc: "./src/scss/**/*.scss",
   cssDist: "./dist/css/",
   jsSrc: "./src/js/**/*.js",
@@ -43,8 +43,19 @@ task("sass", function () {
 })
 
 //Pug
+// task("pug", function () {
+//   return src([paths.pug, "!./src/pug/**/_*.pug"])
+//     .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
+//     .pipe(
+//       pug({
+//         pretty: true,
+//         basedir: "./src/pug",
+//       })
+//     )
+//     .pipe(dest(paths.root))
+// })
 task("pug", function () {
-  return src([paths.pug, "!./src/pug/**/_*.pug"])
+  return src([paths.pug, "!./src/pug/layout.pug", "!./src/pug/**/_*.pug"])
     .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
     .pipe(
       pug({
@@ -52,7 +63,7 @@ task("pug", function () {
         basedir: "./src/pug",
       })
     )
-    .pipe(dest(paths.root))
+    .pipe(dest(paths.html)) // 修正後は paths.html が dist/ になる
 })
 
 //JS Compress

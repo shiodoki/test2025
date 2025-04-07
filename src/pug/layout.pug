@@ -1,0 +1,23 @@
+//- layout.pug（共通レイアウトとして使えるファイル）
+
+doctype html
+html(lang="ja")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title サンプルサイト
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    header
+      h1 サンプルサイトへようこそ！
+      nav
+        ul
+          li: a(href="/") ホーム
+          li: a(href="/about") このサイトについて
+          li: a(href="/contact") お問い合わせ
+
+    main
+      block content
+
+    footer
+      p &copy; 2025 サンプルサイト All rights reserved.
