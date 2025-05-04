@@ -1,7 +1,7 @@
 const gulp = require("gulp")
 const notify = require("gulp-notify")
 const plumber = require("gulp-plumber")
-const sass = require("gulp-sass")
+const sass = require("gulp-sass")(require("sass")) // ← Dart Sass を明示的に使う
 const pug = require("gulp-pug")
 const postcss = require("gulp-postcss")
 const autoprefixer = require("autoprefixer")
@@ -13,7 +13,7 @@ const paths = {
   root: "./dist/",
   pug: "./src/pug/**/*.pug",
   html: "./dist/",
-  cssSrc: "./src/scss/**/*.scss",
+  cssSrc: "./src/scss/main.scss",
   cssDist: "./dist/css/",
   jsSrc: "./src/js/**/*.js",
   jsDist: "./dist/js/",
@@ -43,17 +43,6 @@ task("sass", function () {
 })
 
 //Pug
-// task("pug", function () {
-//   return src([paths.pug, "!./src/pug/**/_*.pug"])
-//     .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
-//     .pipe(
-//       pug({
-//         pretty: true,
-//         basedir: "./src/pug",
-//       })
-//     )
-//     .pipe(dest(paths.root))
-// })
 task("pug", function () {
   return src([paths.pug, "!./src/pug/layout.pug", "!./src/pug/**/_*.pug"])
     .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
